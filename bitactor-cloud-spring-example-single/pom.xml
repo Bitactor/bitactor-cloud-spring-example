@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>bitactor-cloud-spring-example</artifactId>
+        <groupId>com.bitactor.cloud.spring.example</groupId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>bitactor-cloud-spring-example-single</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.bitactor.framework.cloud.spring.boot</groupId>
+            <artifactId>bitactor-cloud-connector-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bitactor.cloud.spring.example</groupId>
+            <artifactId>bitactor-cloud-spring-example-proto</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+</project>

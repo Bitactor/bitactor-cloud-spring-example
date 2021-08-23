@@ -1,0 +1,13 @@
+# Spring配置
+spring:
+  application:
+    name: "client"
+  # bitactor框架配置
+  bitactor:
+    client:
+      host: 127.0.0.1
+      port: 8877
+      # TCP WS KCP
+      net-protocol: TCP
+      # ws-path: "/front"
+      big-endian: true
