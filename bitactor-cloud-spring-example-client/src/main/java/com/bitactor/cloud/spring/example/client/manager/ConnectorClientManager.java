@@ -28,6 +28,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -72,16 +73,20 @@ public class ConnectorClientManager implements ClientManager<ConnectorClient, St
         return null;
     }
 
-    public ConnectorClient connect() throws Throwable {
+    public ConnectorClient connect(String uid) throws Throwable {
+        ConnectorClient oldConnectClient = connectors.get(uid);
+        if (Objects.nonNull(oldConnectClient)) {
+            return oldConnectClient;
+        }
         SpringClientConfig clientConfig = bitactorClientProperties.getClient();
         UrlProperties urlProperties = clientConfig.toUrl();
-        ConnectorClient player = new ConnectorClient();
-        NettyModeClient client = new NettyModeClient(new ClientChannelManager(player, this), urlProperties);
-        player.setClient(client);
+        ConnectorClient connectorClient = new ConnectorClient(uid);
+        NettyModeClient client = new NettyModeClient(new ClientChannelManager(connectorClient, this), urlProperties);
+        connectorClient.setClient(client);
         client.threadStart().sync();
-        player.init();
-        this.add(player);
-        return player;
+        connectorClient.init();
+        this.add(connectorClient);
+        return null;
     }
 
     @Override

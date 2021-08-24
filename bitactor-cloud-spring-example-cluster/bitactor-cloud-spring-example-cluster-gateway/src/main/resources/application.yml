@@ -1,0 +1,30 @@
+# Spring配置
+spring:
+  application:
+    name: "gateway"
+    project: "bitactor-example"
+  # bitactor框架配置
+  bitactor:
+    # 网关服务（gateway）对外暴露配置
+    connector:
+      # 对外暴露的端口,配置该值后将开启网关服
+      port: 8877
+      # TCP WS KCP
+      net-protocol: TCP
+      big-endian: true
+      msg-receive-event-loop-open: true
+      msg-event-loop-name-prefix: "消息分发"
+      msg-event-loop-threads: 5
+    # 后端服务,提供RPC能力和connector分发的controller消息处理
+    cluster:
+      # 注册中心配置 默认 nacos 支持 backup
+      registry:
+        host: 127.0.0.1
+        port: 8848
+      provider:
+        net-protocol: TCP
+      # RPC 该服务的消费服务配置
+      consumer:
+        subscribe: "*"
+        logger-delay: true
+        router-adapter: com.bitactor.cloud.spring.example.cluster.gateway.frame.CustomRouter

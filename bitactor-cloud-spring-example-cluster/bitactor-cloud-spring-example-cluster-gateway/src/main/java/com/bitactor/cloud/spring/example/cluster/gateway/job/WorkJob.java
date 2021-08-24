@@ -1,4 +1,4 @@
-package com.bitactor.cloud.spring.example.single.job;
+package com.bitactor.cloud.spring.example.cluster.gateway.job;
 
 import com.bitactor.cloud.spring.example.proto.TimeNotify;
 import com.bitactor.framework.cloud.spring.controller.extension.ConnectorChannelHandler;

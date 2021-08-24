@@ -21,6 +21,9 @@ import com.bitactor.cloud.spring.example.client.manager.ConnectorClientManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellOption;
+
+import java.util.Objects;
 
 /**
  * 获取登录玩家
@@ -37,13 +40,17 @@ public class ConnectShell {
     }
 
     @ShellMethod(value = "新建一个新的连接", key = "connect", group = "Connect")
-    public String connect() {
+    public String connect(@ShellOption(help = "uid") String uid) {
         try {
-            connectorClientManager.connect();
+            if (Objects.isNull(connectorClientManager.connect(uid))) {
+                return "连接成功";
+            } else {
+                return "已存在该连接";
+            }
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return "连接失败";
         }
-        return "连接成功";
+
     }
 }

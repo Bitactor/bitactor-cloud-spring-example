@@ -48,7 +48,7 @@ public class CalcAddShell {
             return "执行加法结果：" + calcAdd.getResult();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
-            return "计算失败";
+            return "计算加法失败";
         }
     }
 }

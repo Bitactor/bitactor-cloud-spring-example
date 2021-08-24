@@ -36,6 +36,7 @@
         <module>bitactor-cloud-spring-example-single</module>
         <module>bitactor-cloud-spring-example-proto</module>
         <module>bitactor-cloud-spring-example-client</module>
+        <module>bitactor-cloud-spring-example-cluster</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

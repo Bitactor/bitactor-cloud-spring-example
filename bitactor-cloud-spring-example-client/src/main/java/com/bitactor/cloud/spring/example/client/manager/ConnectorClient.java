@@ -32,15 +32,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ConnectorClient extends AbstractClientEntity<String> {
 
+    private String uid;
     private Client client;
     private boolean activity;
-    public ConnectorClient() {
+
+    public ConnectorClient(String uid) {
         super();
+        this.uid = uid;
     }
 
     @Override
     public String getUid() {
-        return client.getChannel().getChannelId();
+        return this.uid;
     }
 
     @Override
@@ -81,7 +84,7 @@ public class ConnectorClient extends AbstractClientEntity<String> {
 
     @Override
     public void doClose() {
-        log.info("Do close channelId:{}", getChannel().getChannelId());
+        log.info("Do close uid:{}",  this.uid);
         if (getChannel() != null) {
             getChannel().close();
         }
@@ -90,7 +93,6 @@ public class ConnectorClient extends AbstractClientEntity<String> {
     public boolean isActivity() {
         return activity;
     }
-
 
 
     public RequestStage getRequestStage(String reqName) {

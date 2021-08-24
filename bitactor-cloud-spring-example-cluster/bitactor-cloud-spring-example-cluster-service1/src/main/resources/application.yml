@@ -1,0 +1,19 @@
+# Spring配置
+spring:
+  application:
+    name: "service1"
+    project: "bitactor-example"
+  # bitactor框架配置
+  bitactor:
+    # 后端服务,提供RPC能力和connector分发的controller消息处理
+    cluster:
+      # 注册中心配置 默认 nacos 支持 backup
+      registry:
+        host: 127.0.0.1
+        port: 8848
+      provider:
+        net-protocol: TCP
+      # RPC 该服务的消费服务配置
+      consumer:
+        subscribe: "*"
+        logger-delay: true
