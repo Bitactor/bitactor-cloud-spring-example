@@ -26,6 +26,8 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
+import java.util.Objects;
+
 /**
  * 获取登录玩家
  *
@@ -44,6 +46,9 @@ public class CalcAddShell {
     public String calcAdd(@ShellOption(help = "channelId") String uid, @ShellOption(help = "参数A") int a, @ShellOption(help = "参数B") int b) {
         try {
             ConnectorClient connectorClient = connectorClientManager.get(uid);
+            if(Objects.isNull(connectorClient)){
+                return "不存在此连接";
+            }
             CalcAddResp calcAdd = connectorClient.sendSync(new CalcAddReq(a, b), CalcAddResp.class, connectorClient.getRequestStage("calcAdd"));
             return "执行加法结果：" + calcAdd.getResult();
         } catch (Throwable throwable) {

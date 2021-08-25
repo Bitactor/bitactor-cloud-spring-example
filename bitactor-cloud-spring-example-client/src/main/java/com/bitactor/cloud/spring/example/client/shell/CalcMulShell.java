@@ -26,6 +26,8 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
+import java.util.Objects;
+
 /**
  * 获取登录玩家
  *
@@ -44,6 +46,9 @@ public class CalcMulShell {
     public String calcMul(@ShellOption(help = "uid") String uid, @ShellOption(help = "参数A") int a, @ShellOption(help = "参数B") int b) {
         try {
             ConnectorClient connectorClient = connectorClientManager.get(uid);
+            if(Objects.isNull(connectorClient)){
+                return "不存在此连接";
+            }
             CalcMulResp calcAdd = connectorClient.sendSync(new CalcMulReq(a, b), CalcMulResp.class, connectorClient.getRequestStage("calcMul"));
             return "执行乘法结果：" + calcAdd.getResult();
         } catch (Throwable throwable) {

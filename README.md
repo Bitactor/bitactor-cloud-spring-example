@@ -20,6 +20,8 @@
 * Nocos 2.0.0+ `如果仅测试单服务则不需要安装`
 
 ## 测试
+### 注意
+国内maven镜像有延迟，如果通过国内镜像无法下载相关依赖，可以直接访问中央仓库下载，也可以将 `bitactor-cloud-spring` clone 到本地安装
 ### 单服务测试流程
 1. 启动 `启动服务[bitactor-cloud-spring-example-single]`
 2. 启动 `启动服务[bitactor-cloud-spring-example-client ]`

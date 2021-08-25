@@ -26,6 +26,8 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
+import java.util.Objects;
+
 /**
  * 获取登录玩家
  *
@@ -44,6 +46,9 @@ public class CalcSubShell {
     public String calcSub(@ShellOption(help = "channelId") String uid, @ShellOption(help = "参数A") int a, @ShellOption(help = "参数B") int b) {
         try {
             ConnectorClient connectorClient = connectorClientManager.get(uid);
+            if(Objects.isNull(connectorClient)){
+                return "不存在此连接";
+            }
             CalcSubResp calcSub = connectorClient.sendSync(new CalcSubReq(a, b), CalcSubResp.class, connectorClient.getRequestStage("calcSub"));
             return "执行减法结果：" + calcSub.getResult();
         } catch (Throwable throwable) {
