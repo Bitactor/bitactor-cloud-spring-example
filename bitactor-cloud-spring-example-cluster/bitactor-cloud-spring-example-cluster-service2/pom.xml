@@ -5,7 +5,7 @@
     <parent>
         <artifactId>bitactor-cloud-spring-example-cluster</artifactId>
         <groupId>com.bitactor.cloud.spring.example</groupId>
-        <version>1.0.4</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

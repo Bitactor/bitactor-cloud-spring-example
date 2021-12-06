@@ -15,4 +15,5 @@ spring:
       msg-receive-event-loop-open: true
       msg-event-loop-name-prefix: "消息分发"
       msg-event-loop-threads: 5
+      channel-init-clazz: "com.bitactor.cloud.spring.example.single.frame.ConnectorNettyChannelInit"
 

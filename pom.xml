@@ -51,11 +51,11 @@
         <!-- Maven plugins -->
         <maven_flatten_version>1.1.0</maven_flatten_version>
         <!--工程版本-->
-        <revision>1.0.4</revision>
+        <revision>1.1.0.SNAPSHOT</revision>
 
         <!-- Common libs -->
         <spring_boot_version>2.2.0.RELEASE</spring_boot_version>
-        <bitactor_cloud_version>1.0.4</bitactor_cloud_version>
+        <bitactor_cloud_version>1.1.0.SNAPSHOT</bitactor_cloud_version>
         <lombok_version>1.16.20</lombok_version>
     </properties>
     <dependencyManagement>
