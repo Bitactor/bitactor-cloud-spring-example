@@ -5,6 +5,8 @@ import com.bitactor.framework.cloud.spring.controller.extension.ConnectorChannel
 import com.bitactor.framework.cloud.spring.model.codec.MessageConnectorData;
 import com.bitactor.framework.cloud.spring.model.utils.MessageUtil;
 import com.bitactor.framework.core.net.api.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -26,17 +28,23 @@ public class WorkJob {
      */
     @Scheduled(fixedDelay = 30000)
     private void printConnectSize() {
-        Collection<Channel> channels = connectorChannelHandler.getConnectorChannels();
+        Collection<Channel<ChannelFuture>> channels = connectorChannelHandler.getConnectorChannels();
         log.info("Number of client connections：{}", channels.size());
         TimeNotify timeNotify = new TimeNotify(System.currentTimeMillis());
         try {
             MessageConnectorData builder = MessageConnectorData.builder(MessageUtil.encode(timeNotify), MessageUtil.checkObjType(timeNotify.getClass()).valueInt(), MessageUtil.getCommandId(timeNotify));
-            for (Channel channel : channels) {
-                channel.send(builder);
+            for (Channel<ChannelFuture> channel : channels) {
+                ChannelFuture future = channel.send(builder);
+                log.info("1-Send time to client: {}, isSuccess:{}", channel.getChannelId(), future.isSuccess());
+                future.addListener(new ChannelFutureListener() {
+                    @Override
+                    public void operationComplete(ChannelFuture future) throws Exception {
+                        log.info("2-Send time to client: {}, isSuccess:{}", channel.getChannelId(), future.isSuccess());
+                    }
+                });
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }
