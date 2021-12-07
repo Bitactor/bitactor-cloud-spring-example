@@ -23,6 +23,7 @@ import com.bitactor.framework.cloud.spring.boot.client.extension.AbstractClientE
 import com.bitactor.framework.cloud.spring.boot.client.extension.RequestStage;
 import com.bitactor.framework.core.net.api.Channel;
 import com.bitactor.framework.core.net.api.Client;
+import io.netty.channel.ChannelFuture;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -33,7 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ConnectorClient extends AbstractClientEntity<String> {
 
     private String uid;
-    private Client client;
+    private Client<ChannelFuture> client;
     private boolean activity;
 
     public ConnectorClient(String uid) {
@@ -56,12 +57,12 @@ public class ConnectorClient extends AbstractClientEntity<String> {
     }
 
     @Override
-    public Channel getChannel() {
+    public Channel<ChannelFuture> getChannel() {
         return client.getChannel();
     }
 
     @Override
-    public Client getClient() {
+    public Client<ChannelFuture> getClient() {
         return client;
     }
 

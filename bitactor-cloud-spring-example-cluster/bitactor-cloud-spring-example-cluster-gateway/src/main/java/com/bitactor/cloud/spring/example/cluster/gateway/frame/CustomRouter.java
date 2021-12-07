@@ -22,6 +22,7 @@ import com.bitactor.framework.core.net.api.Channel;
 import com.bitactor.framework.core.net.api.transport.AbstractClient;
 import com.bitactor.framework.core.rpc.api.RPCRequest;
 import com.bitactor.framework.core.rpc.api.router.PollingRouterAdapter;
+import io.netty.channel.ChannelFuture;
 
 import java.util.List;
 
@@ -30,10 +31,10 @@ import java.util.List;
  *
  * @author WXH
  */
-public class CustomRouter extends PollingRouterAdapter {
+public class CustomRouter extends PollingRouterAdapter<ChannelFuture> {
 
     @Override
-    public Channel routerAdapter(List<AbstractClient> clients, RPCRequest request) {
+    public Channel<ChannelFuture> routerAdapter(List<AbstractClient<ChannelFuture>> clients, RPCRequest request) {
         // TODO 可自定义路由规则
         // 默认路由规则（轮训）
         return super.routerAdapter(clients, request);
