@@ -35,11 +35,10 @@ public class WorkJob {
             MessageConnectorData builder = MessageConnectorData.builder(MessageUtil.encode(timeNotify), MessageUtil.checkObjType(timeNotify.getClass()).valueInt(), MessageUtil.getCommandId(timeNotify));
             for (Channel<ChannelFuture> channel : channels) {
                 ChannelFuture future = channel.send(builder);
-                log.info("1-Send time to client: {}, isSuccess:{}", channel.getChannelId(), future.isSuccess());
                 future.addListener(new ChannelFutureListener() {
                     @Override
                     public void operationComplete(ChannelFuture future) throws Exception {
-                        log.info("2-Send time to client: {}, isSuccess:{}", channel.getChannelId(), future.isSuccess());
+                        log.info("Send time to client: {}, isSuccess:{}", channel.getChannelId(), future.isSuccess());
                     }
                 });
             }

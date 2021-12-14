@@ -25,14 +25,14 @@ import lombok.extern.slf4j.Slf4j;
  * @author WXH
  */
 @Slf4j
-public class TimeNotifyListener extends NoticeMapping {
+public class TimeNotifyListener extends NoticeMapping<TimeNotify> {
 
     public TimeNotifyListener() {
         super(TimeNotify.class);
     }
 
     @Override
-    public void notice(Object notice) {
+    public void notice(TimeNotify notice) {
         log.info("Received time notice, UTC : {} ", notice);
     }
 }

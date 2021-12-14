@@ -11,4 +11,3 @@ spring:
       net-protocol: TCP
       # ws-path: "/front"
       big-endian: true
-      channel-init-clazz: "com.bitactor.cloud.spring.example.client.frame.ClientNettyChannelInit"

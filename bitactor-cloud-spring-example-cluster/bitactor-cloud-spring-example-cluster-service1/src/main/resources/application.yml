@@ -13,10 +13,8 @@ spring:
         port: 8848
       provider:
         net-protocol: TCP
-        channel-init-clazz: "com.bitactor.cloud.spring.example.cluster.service1.frame.ProviderNettyChannelInit"
       # RPC 该服务的消费服务配置
       consumer:
         subscribe: "*"
         logger-delay: true
-        channel-init-clazz: "com.bitactor.cloud.spring.example.cluster.service1.frame.ConsumerNettyChannelInit"
 

@@ -21,6 +21,7 @@ import com.bitactor.framework.cloud.spring.boot.client.BitactorClientProperties;
 import com.bitactor.framework.cloud.spring.boot.client.config.SpringClientConfig;
 import com.bitactor.framework.cloud.spring.boot.client.extension.ClientManager;
 import com.bitactor.framework.cloud.spring.boot.client.net.ClientChannelManager;
+import com.bitactor.framework.cloud.spring.boot.client.net.ClientNettyChannelInit;
 import com.bitactor.framework.cloud.spring.boot.client.sender.ClientChannelNettySendPolicy;
 import com.bitactor.framework.core.config.UrlProperties;
 import com.bitactor.framework.core.net.netty.client.NettyModeClient;
@@ -48,6 +49,8 @@ public class ConnectorClientManager implements ClientManager<ConnectorClient, St
     private BitactorClientProperties bitactorClientProperties;
     @Autowired(required = false)
     private ClientChannelNettySendPolicy clientChannelNettySendPolicy;
+    @Autowired(required = false)
+    private ClientNettyChannelInit clientNettyChannelInit;
 
     @Override
     public ConnectorClient get(String uid) {
@@ -85,7 +88,7 @@ public class ConnectorClientManager implements ClientManager<ConnectorClient, St
         SpringClientConfig clientConfig = bitactorClientProperties.getClient();
         UrlProperties urlProperties = clientConfig.toUrl();
         ConnectorClient connectorClient = new ConnectorClient(uid);
-        NettyModeClient client = new NettyModeClient(new ClientChannelManager(connectorClient, this, clientChannelNettySendPolicy), urlProperties);
+        NettyModeClient client = new NettyModeClient(new ClientChannelManager(connectorClient, this, clientChannelNettySendPolicy), urlProperties, clientNettyChannelInit);
         connectorClient.setClient(client);
         client.threadStart().sync();
         connectorClient.init();
