@@ -17,7 +17,7 @@
 
 package com.bitactor.cloud.spring.example.client;
 
-import com.bitactor.framework.cloud.spring.boot.client.annotation.EnableBitactorClientConfiguration;
+import com.bitactor.framework.cloud.spring.boot.client.annotation.EnableBitactorClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -25,7 +25,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author WXH
  */
 @SpringBootApplication
-@EnableBitactorClientConfiguration
+@EnableBitactorClient
 public class ClientApplication {
     public static void main(String[] args) {
         SpringApplication.run(ClientApplication.class, args);

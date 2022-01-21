@@ -17,7 +17,7 @@
 
 package com.bitactor.cloud.spring.example.single;
 
-import com.bitactor.framework.cloud.spring.boot.connector.annotation.EnableBitactorConnectorConfiguration;
+import com.bitactor.framework.cloud.spring.boot.connector.annotation.EnableBitactorConnector;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -27,7 +27,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @EnableScheduling
 @SpringBootApplication
-@EnableBitactorConnectorConfiguration
+@EnableBitactorConnector
 public class SingleServerApplication {
 
     public static void main(String[] args) throws Throwable {

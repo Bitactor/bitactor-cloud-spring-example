@@ -17,7 +17,7 @@
 
 package com.bitactor.cloud.spring.example.cluster.service2;
 
-import com.bitactor.framework.cloud.spring.boot.cluster.annotation.EnableBitactorClusterConfiguration;
+import com.bitactor.framework.cloud.spring.boot.cluster.annotation.EnableBitactorCluster;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -25,7 +25,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author WXH
  */
 @SpringBootApplication
-@EnableBitactorClusterConfiguration
+@EnableBitactorCluster
 public class Service2Application {
     public static void main(String[] args) throws Throwable {
         SpringApplication.run(Service2Application.class, args);
